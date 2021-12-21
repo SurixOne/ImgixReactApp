@@ -88,7 +88,7 @@ export default function ImgixContainer() {
               }}
               sx={{
                 fontSize: 64,
-                color: "rgb(150, 252, 182)",
+                color: "lightgreen",
                 padding: "5px",
               }}
             />

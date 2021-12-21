@@ -1,0 +1,24 @@
+.imgix-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.add-close-icon {
+  position: absolute;
+  top: 0;
+  left: calc(100vw / 3 - 100px);
+  z-index: 100;
+}
+.add-close-icon:hover {
+  cursor: pointer;
+}
+.imgix-content {
+  height: 100vh;
+  width: calc(100vw * 2 / 3);
+}
+
+.imgix-content:nth-child(1) {
+  width: calc(100vw / 3);
+  background-color: rgb(20, 32, 37);
+}

@@ -1,0 +1,17 @@
+.image-container {
+  height: calc(100vh - 100vw * (4 / 45) - 60px);
+  overflow-y: overlay;
+  margin: 30px;
+}
+
+.image-container::-webkit-scrollbar {
+  display: none;
+}
+.image-layer {
+  height: calc(100vh - 100vw * (4 / 45));
+  max-width: "fit-content";
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

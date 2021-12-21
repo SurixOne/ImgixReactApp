@@ -1,0 +1,10 @@
+.img img:hover {
+  cursor: pointer;
+}
+
+.slicker-container {
+  background: linear-gradient(90deg, rgb(31, 50, 59) 51%, black 50%);
+  width: calc(100vw * (2 / 3));
+  overflow-x: hidden;
+  height: calc(100vw * (4 / 45));
+}

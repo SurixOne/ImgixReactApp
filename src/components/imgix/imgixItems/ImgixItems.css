@@ -1,0 +1,36 @@
+.imgix-items {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  height: 100vh;
+}
+
+.items {
+  overflow-y: overlay;
+  overflow-x: hidden;
+  margin-top: 116px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.items::-webkit-scrollbar {
+  display: none;
+}
+
+.items-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100vw / 3 - 100px);
+  height: 100px;
+  background-color: rgb(31, 50, 59);
+  margin-block-start: 0;
+  margin-block-end: 0;
+  color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-right: 100px;
+  z-index: 99;
+}

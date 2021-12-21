@@ -5,10 +5,9 @@
   justify-content: center;
   align-items: center;
   margin: 16px;
-  background-color: rgb(30, 201, 192);
+  background-color: rgb(98, 136, 179);
   border-radius: 10px;
   color: white;
-  box-shadow: 0px 0px 5px 5px #29977cbf;
   transition: 0.2s ease-out;
 }
 
@@ -24,8 +23,7 @@
 }
 
 #orient-selector {
-  background-color: rgb(30, 201, 192);
-  box-shadow: 0px 0px 5px 5px #29977cbf;
+  background-color: rgb(98, 136, 179);
   padding-top: 38.5px;
   border-radius: 10px;
   color: white !important;
@@ -41,14 +39,14 @@
   padding-left: 10px;
   position: relative;
   margin-left: 10px;
+  color: lightgreen;
 }
 .slider-cont {
   width: calc(100vw / 3 - 32px);
   color: white;
   display: flex;
   flex-direction: row;
-  background-color: rgb(30, 201, 192);
-  box-shadow: 0px 0px 5px 5px #29977cbf;
+  background-color: rgb(98, 136, 179);
   margin: 16px;
   border-radius: 10px;
   padding-top: 35px;

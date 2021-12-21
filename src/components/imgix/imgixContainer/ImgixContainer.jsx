@@ -28,7 +28,7 @@ export default function ImgixContainer() {
     shad: { name: "shad", comp: "Shadows", value: 0 },
     sharp: { name: "sharp", comp: "Sharpen", value: 0 },
     usm: { name: "usm", comp: "Unsharp", value: 0 },
-    usmrad: { name: "usmrad", comp: "USM Radius", value: 30 },
+    usmrad: { name: "usmrad", comp: "USM Rad", value: 30 },
     vib: { name: "vib", comp: "Vibrance", value: 0 },
   });
   const [params2, setParams2] = useState({

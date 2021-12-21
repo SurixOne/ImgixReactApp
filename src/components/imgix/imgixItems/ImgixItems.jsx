@@ -5,7 +5,6 @@ import "./ImgixItems.css";
 
 export default function ImgixItems({ params, setParams, params2, setParams2 }) {
   function changeParams(p) {
-    console.log("params to change", p);
     switch (p.name) {
       case "flip":
         switch (p.value) {
@@ -108,7 +107,6 @@ export default function ImgixItems({ params, setParams, params2, setParams2 }) {
         break;
 
       case "invert":
-        console.log(p.value);
         params[p.name].value = !params[p.name].value;
         setParams({ ...params });
         params2.invert = !params2.invert;

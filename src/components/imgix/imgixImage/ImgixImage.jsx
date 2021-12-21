@@ -8,7 +8,6 @@ import Select from "@mui/material/Select";
 import "./ImgixImage.css";
 
 export default function ImgixImage({ url, params2 }) {
-  console.log(params2);
   return (
     <div className="image-layer">
       <h1 style={{ position: "absolute", zIndex: 100 }}></h1>

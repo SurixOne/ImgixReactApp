@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import ImgixAddItem from "../imgixAddItem/ImgixAddItem";
 import ImgixImage from "../imgixImage/ImgixImage";
 import ImgixItems from "../imgixItems/ImgixItems";
-import AddBoxIcon from "@mui/icons-material/AddBox";
+import FileCopyIcon from "@mui/icons-material/FileCopy";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import "./ImgixContainer.css";
 import ImgixSlicker from "../imgixSlicker/ImgixSlicker";
+import { buildURL } from "react-imgix";
 export default function ImgixContainer() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [urls, setUrls] = useState([]);
@@ -46,6 +49,13 @@ export default function ImgixContainer() {
     vib: 0,
     usmrad: 30,
   });
+  const [open, setOpen] = React.useState(false);
+
+  function handleUrlRequest() {
+    let newUrl = buildURL(url, { w: 450, h: 100, ...params2 });
+    navigator.clipboard.writeText(newUrl);
+    setOpen(true);
+  }
   React.useEffect(() => {
     fetch(
       `https://storage.googleapis.com/nanlabs-engineering-technical-interviews/imgix-samples-list.json`
@@ -57,11 +67,32 @@ export default function ImgixContainer() {
   }, []);
   return (
     <div>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        message="Copied URL to clipboard!"
+        onClose={() => setOpen(false)}
+      >
+        <Alert onClose={() => setOpen(false)} severity="success">
+          copied URL to clipboard!
+        </Alert>
+      </Snackbar>
       <span className="add-close-icon">
         {showAddForm ? (
           <DisabledByDefaultIcon sx={{ fontSize: 100 }} />
         ) : (
-          <AddBoxIcon sx={{ fontSize: 100, color: "rgb(3, 252, 182)" }} />
+          <div onClick={() => handleUrlRequest()}>
+            <FileCopyIcon
+              style={{
+                height: "90px",
+              }}
+              sx={{
+                fontSize: 64,
+                color: "rgb(150, 252, 182)",
+                padding: "5px",
+              }}
+            />
+          </div>
         )}
       </span>
       <div className="imgix-container">

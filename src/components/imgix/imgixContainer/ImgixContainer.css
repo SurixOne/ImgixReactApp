@@ -22,3 +22,7 @@
   width: calc(100vw / 3);
   background-color: rgb(20, 32, 37);
 }
+
+.MuiPaper-root {
+  background-color: rgb(94, 255, 188) !important;
+}

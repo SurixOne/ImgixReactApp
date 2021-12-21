@@ -26,3 +26,7 @@
 .MuiPaper-root {
   background-color: rgb(94, 255, 188) !important;
 }
+
+.MuiInputLabel-root {
+  color: white !important;
+}

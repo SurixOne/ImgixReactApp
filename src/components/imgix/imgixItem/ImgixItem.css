@@ -1,3 +1,17 @@
+.imgix-item,
+#orient-selector,
+.slider-cont {
+  background: linear-gradient(
+    105deg,
+    rgb(62, 1, 131),
+    rgb(91, 42, 189),
+    rgb(126, 1, 228),
+    rgb(204, 197, 139)
+  );
+  border-radius: 10px;
+  color: rgb(255, 232, 181) !important;
+}
+
 .imgix-item {
   width: calc(100vw / 3 - 32px);
   height: 100px;
@@ -5,9 +19,6 @@
   justify-content: center;
   align-items: center;
   margin: 16px;
-  background-color: rgb(98, 136, 179);
-  border-radius: 10px;
-  color: white;
   transition: 0.2s ease-out;
 }
 
@@ -23,10 +34,7 @@
 }
 
 #orient-selector {
-  background-color: rgb(98, 136, 179);
   padding-top: 38.5px;
-  border-radius: 10px;
-  color: white !important;
   padding-bottom: 38.5px;
   padding-left: 30px;
 }
@@ -39,16 +47,13 @@
   padding-left: 10px;
   position: relative;
   margin-left: 10px;
-  color: lightgreen;
+  color: rgb(253, 255, 140);
 }
 .slider-cont {
   width: calc(100vw / 3 - 32px);
-  color: white;
   display: flex;
   flex-direction: row;
-  background-color: rgb(98, 136, 179);
   margin: 16px;
-  border-radius: 10px;
   padding-top: 35px;
   padding-bottom: 35px;
 }

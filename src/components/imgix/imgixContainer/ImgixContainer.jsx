@@ -77,7 +77,7 @@ export default function ImgixContainer() {
           copied URL to clipboard!
         </Alert>
       </Snackbar>
-      <span className="add-close-icon">
+      <span className="copy-icon">
         {showAddForm ? (
           <DisabledByDefaultIcon sx={{ fontSize: 100 }} />
         ) : (
@@ -88,7 +88,7 @@ export default function ImgixContainer() {
               }}
               sx={{
                 fontSize: 64,
-                color: "lightgreen",
+                color: "rgb(167, 255, 236)",
                 padding: "5px",
               }}
             />

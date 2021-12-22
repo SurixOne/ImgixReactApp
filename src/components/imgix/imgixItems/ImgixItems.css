@@ -22,7 +22,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(100vw / 3 - 100px);
+  width: calc(100vw / 3);
   height: 100px;
   background-color: rgb(31, 50, 59);
   margin-block-start: 0;
@@ -31,6 +31,5 @@
   position: absolute;
   left: 0;
   top: 0;
-  padding-right: 100px;
   z-index: 99;
 }

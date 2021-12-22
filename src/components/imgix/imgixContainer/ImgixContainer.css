@@ -4,13 +4,13 @@
   position: relative;
 }
 
-.add-close-icon {
+.copy-icon {
   position: absolute;
   top: 0;
-  left: calc(100vw / 3 - 100px);
+  left: calc(100vw / 3 - 74px);
   z-index: 100;
 }
-.add-close-icon:hover {
+.copy-icon:hover {
   cursor: pointer;
 }
 .imgix-content {

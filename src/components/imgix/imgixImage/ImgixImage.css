@@ -10,7 +10,7 @@
 .image-layer {
   height: calc(100vh - 100vw * (4 / 45));
   max-width: "fit-content";
-  background-color: black;
+  background: linear-gradient(105deg, rgb(3, 16, 49), rgb(74, 18, 100));
   display: flex;
   justify-content: center;
   align-items: center;

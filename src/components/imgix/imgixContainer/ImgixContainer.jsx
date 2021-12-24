@@ -12,7 +12,9 @@ import { buildURL } from "react-imgix";
 export default function ImgixContainer() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [urls, setUrls] = useState([]);
-  const [url, setUrl] = useState("https://assets.imgix.net/unsplash/bear.jpg");
+  const [url, setUrl] = useState(
+    "https://assets.imgix.net/unsplash/motorbike.jpg"
+  );
   const [params, setParams] = useState({
     flip: { name: "flip", comp: "Flip", value: "none" },
     orient: { name: "orient", comp: "Orientation", value: "none" },

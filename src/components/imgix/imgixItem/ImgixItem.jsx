@@ -86,14 +86,14 @@ export default function ImgixItem({ item, changeParams }) {
         )
       ) : (
         <div className="slider-cont">
-          <span>
+          <span className="slider-txt">
             {item.comp}
             :&nbsp;
           </span>
           <Slider
             id="rot-slider"
             aria-label="Temperature"
-            defaultValue={item.name === "usmrad" ? 30 : "0"}
+            defaultValue={item.name === "usmrad" ? 30 : 0}
             onChangeCommitted={valuetext}
             valueLabelDisplay="auto"
             step={1}

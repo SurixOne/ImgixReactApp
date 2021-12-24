@@ -1,7 +1,6 @@
 .image-container {
-  height: calc(100vh - 100vw * (4 / 45) - 60px);
+  height: calc(100vh - 100vw * (4 / 45));
   overflow-y: overlay;
-  margin: 30px;
 }
 
 .image-container::-webkit-scrollbar {

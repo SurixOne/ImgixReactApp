@@ -12,11 +12,7 @@ export default function ImgixImage({ url, params2 }) {
     <div className="image-layer">
       <h1 style={{ position: "absolute", zIndex: 100 }}></h1>
       <div className="image-container">
-        <Imgix
-          src={url}
-          sizes="calc(100vw * 2 / 3 - 60px)"
-          imgixParams={params2}
-        />
+        <Imgix src={url} sizes="calc(100vw * 2 / 3)" imgixParams={params2} />
       </div>
     </div>
   );

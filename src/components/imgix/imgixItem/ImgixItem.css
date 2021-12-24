@@ -3,10 +3,12 @@
 .slider-cont {
   background: linear-gradient(
     105deg,
-    rgb(62, 1, 131),
+    purple,
+    rgb(41, 0, 41),
     rgb(91, 42, 189),
     rgb(126, 1, 228),
-    rgb(204, 197, 139)
+    violet,
+    pink
   );
   border-radius: 10px;
   color: rgb(255, 232, 181) !important;

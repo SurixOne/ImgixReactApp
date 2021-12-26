@@ -16,4 +16,4 @@ Also you can scroll horizontally by drag and drop on the image gallery.
 
 the options can be changed on the options on the left
 
-After editing, you can copy your URL with te green button on the top left side
+After editing, you can copy your URL with the button on the top right side of the left panel

@@ -26,3 +26,8 @@ code {
     rgb(40, 211, 182)
   );
 }
+
+.MuiFilledInput-underline::after,
+.MuiFilledInput-underline::before {
+  display: none;
+}

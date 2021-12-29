@@ -1,18 +1,88 @@
 import React from "react";
-import { useState } from "react";
 import Imgix from "react-imgix";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import "./ImgixImage.css";
+import UndoIcon from "@mui/icons-material/Undo";
+import RedoIcon from "@mui/icons-material/Redo";
+import { useDispatch, useSelector } from "react-redux";
+import { optionsActions } from "../../../store/actions/optionsActions/OptionsActions";
 
-export default function ImgixImage({ url, params2 }) {
+export default function ImgixImage({ url }) {
+  const params = useSelector((s) => s.options);
+  const selectedChanges = useSelector((s) => s.changes);
+  const selectedFutureChanges = useSelector((s) => s.futureChanges);
+  const dispatchOption = useDispatch();
+
+  function undo() {
+    if (selectedChanges > 0)
+      dispatchOption({ type: optionsActions.UNDO_CHANGE });
+  }
+  function redo() {
+    if (selectedFutureChanges > 0)
+      dispatchOption({ type: optionsActions.REDO_CHANGE });
+  }
   return (
-    <div className="image-layer">
-      <h1 style={{ position: "absolute", zIndex: 100 }}></h1>
-      <div className="image-container">
-        <Imgix src={url} sizes="calc(100vw * 2 / 3)" imgixParams={params2} />
+    <div className='image-layer'>
+      <div className='image-container'>
+        <span
+          style={{
+            position: "absolute",
+            width: "calc(100vw * (2 / 3) - 40px)",
+            margin: "20px",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "end",
+          }}
+        >
+          {
+            <span>
+              <UndoIcon
+                onClick={() => undo()}
+                sx={{
+                  color: "rgb(167, 255, 236)",
+                  background: "rgb(20, 32, 37)",
+                  borderRadius: "3px",
+                  fontSize: "calc(30px + 1vw)",
+                  padding: ".75vw",
+                  cursor: selectedChanges > 0 ? "pointer" : "initial",
+                  opacity: selectedChanges > 0 ? "0.9" : "0.5",
+                }}
+              />
+              {selectedChanges > 0 && (
+                <span
+                  className='counter'
+                  style={{
+                    right: "calc(20px + (30px + 2.5vw) )",
+                  }}
+                >
+                  <p>{selectedChanges}</p>
+                </span>
+              )}
+            </span>
+          }
+          {
+            <span>
+              <RedoIcon
+                onClick={() => redo()}
+                sx={{
+                  color: "rgb(167, 255, 236)",
+                  background: "rgb(20, 32, 37)",
+                  borderRadius: "3px",
+                  fontSize: "calc(30px + 1vw)",
+                  padding: ".75vw",
+                  marginLeft: "20px",
+                  cursor: selectedFutureChanges > 0 ? "pointer" : "initial",
+                  opacity: selectedFutureChanges > 0 ? "0.9" : "0.5",
+                }}
+              />
+              {selectedFutureChanges > 0 && (
+                <span className='counter' style={{ right: "0" }}>
+                  <p>{selectedFutureChanges}</p>
+                </span>
+              )}
+            </span>
+          }
+        </span>
+        <Imgix src={url} sizes='calc(100vw * 2 / 3)' imgixParams={params} />
       </div>
     </div>
   );

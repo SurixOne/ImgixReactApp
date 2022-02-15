@@ -5,18 +5,16 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Slider from "@mui/material/Slider";
-export default function ImgixItem({ item, changeParams, labels }) {
+export default function ImgixItem({ item, changeImageFilters }) {
   const [numVal, setNumVal] = useState(0);
   const orientOptions = ["none", 1, 2, 3, 4, 5, 6, 7, 8, 90, 180, 270];
 
-  function handleChange(e) {
-    changeParams({ name: item.name, value: e.target.value });
-  }
-  function valuetext(e, v) {
-    changeParams({ name: item.name, value: v });
+  function handleChange(e, v = undefined) {
+    changeImageFilters({ ...item, value: v ? v : e.target.value });
   }
   function handleItemClick() {
-    if (item.name === "flip" || item.name === "invert") changeParams(item);
+    if (item.name === "flip" || item.name === "invert")
+      changeImageFilters(item);
   }
   return (
     <>
@@ -29,14 +27,14 @@ export default function ImgixItem({ item, changeParams, labels }) {
             onClick={() => handleItemClick()}
           >
             <span className='slider-txt'>
-              <span>{labels[item.name]}</span>
+              <span>{item.label}</span>
             </span>
             <h1>{item.value.toString()}</h1>
           </div>
         ) : (
           <div className='selector-cont'>
             <span className='slider-txt'>
-              <span>{labels[item.name]}</span>
+              <span>{item.label}</span>
             </span>
             <FormControl fullWidth variant='filled'>
               <InputLabel
@@ -61,13 +59,13 @@ export default function ImgixItem({ item, changeParams, labels }) {
       ) : (
         <div className='slider-cont'>
           <span className='slider-txt'>
-            <span>{labels[item.name]}</span>
+            <span>{item.label}</span>
           </span>
           <Slider
             id='rot-slider'
             aria-label='Temperature'
             defaultValue={item.name === "usmrad" ? 30 : 0}
-            onChangeCommitted={valuetext}
+            onChangeCommitted={handleChange}
             onChange={(e, v) => setNumVal(v)}
             valueLabelDisplay='auto'
             value={numVal}

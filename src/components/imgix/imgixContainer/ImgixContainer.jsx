@@ -18,7 +18,15 @@ export default function ImgixContainer() {
   const [open, setOpen] = React.useState(false);
 
   function handleUrlRequest() {
-    let newUrl = buildURL(url, { ...params });
+    let newUrl = buildURL(
+      url,
+      Object.fromEntries(
+        Object.entries(params).map(([key, filterProperties]) => [
+          key,
+          filterProperties.value,
+        ])
+      )
+    );
     navigator.clipboard.writeText(newUrl);
     setOpen(true);
   }

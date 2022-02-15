@@ -5,117 +5,37 @@ import ImgixItem from "../imgixItem/ImgixItem";
 import "./ImgixItems.css";
 
 export default function ImgixItems() {
-  var labels = {};
-
-  const params = useSelector((s) => s.options);
+  const imageFilters = useSelector((s) => s.options);
   const dispatchOption = useDispatch();
+
   function setParam(op) {
     dispatchOption({ type: optionsActions.CHANGE_OPTION, option: op });
   }
-  function changeParams(p) {
-    let val;
-    switch (p.name) {
-      case "flip":
-        switch (p.value) {
-          case "none":
-            val = "h";
-            break;
-          case "h":
-            val = "v";
-            break;
-          case "v":
-            val = "hv";
-            break;
-          case "hv":
-            val = "none";
-            break;
-          default:
-            break;
-        }
-        setParam({ ...p, value: val });
-        break;
-      case "orient":
-      case "rot":
-      case "bri":
-      case "exp":
-      case "con":
-      case "high":
-      case "gam":
-      case "hue":
-      case "sat":
-      case "shad":
-      case "sharp":
-      case "usm":
-      case "usmrad":
-      case "vib":
-        if (p.value !== params[p.name]) {
-          setParam({ ...p, value: p.value });
-        }
-        break;
-      case "invert":
-        setParam({ ...p, value: !p.value });
-        break;
-      default:
-        break;
-    }
-  }
 
-  Object.keys(params).forEach((i) => {
-    let text = "";
-    switch (i) {
-      case "flip":
-        text = "Flip";
-        break;
-      case "orient":
-        text = "Orientation";
-        break;
-      case "rot":
-        text = "Rotation";
-        break;
-      case "bri":
-        text = "Brightness";
-        break;
-      case "exp":
-        text = "Exposure";
-        break;
-      case "con":
-        text = "Contrast";
-        break;
-      case "high":
-        text = "Highlight";
-        break;
-      case "gam":
-        text = "Gamma";
-        break;
-      case "hue":
-        text = "Hue Shift";
-        break;
-      case "invert":
-        text = "Invert";
-        break;
-      case "sat":
-        text = "Saturation";
-        break;
-      case "shad":
-        text = "Shadows";
-        break;
-      case "sharp":
-        text = "Sharpen";
-        break;
-      case "usm":
-        text = "Unsharp";
-        break;
-      case "usmrad":
-        text = "USM Rad";
-        break;
-      case "vib":
-        text = "Vibrance";
-        break;
-      default:
-        break;
-    }
-    labels[i] = text;
-  });
+  const flipList = ["none", "h", "v", "hv"];
+
+  const getNext = (value) => {
+    const len = flipList.length;
+    let next = "error";
+
+    flipList.forEach((elem, index) => {
+      if (elem === value) next = flipList[(index + 1) % len];
+    });
+    return next;
+  };
+
+  const getValue = (value, type) => {
+    const types = {
+      NEXT: getNext(value),
+      NEW: value,
+      OPOSITE: !value,
+    };
+    return types[type];
+  };
+
+  function changeImageFilters(p) {
+    setParam({ ...p, value: getValue(p.value, p.changeType) });
+  }
   return (
     <div className='imgix-items'>
       <h1 className='items-title'>
@@ -126,13 +46,12 @@ export default function ImgixItems() {
         Items
       </h1>
       <div className='items'>
-        {Object.keys(params).map((i) => {
+        {Object.keys(imageFilters).map((i) => {
           return (
             <ImgixItem
               className='imgix-item'
-              changeParams={changeParams}
-              item={{ name: i, value: params[i] }}
-              labels={labels}
+              changeImageFilters={changeImageFilters}
+              item={{ ...imageFilters[i], name: i }}
               key={i}
             />
           );

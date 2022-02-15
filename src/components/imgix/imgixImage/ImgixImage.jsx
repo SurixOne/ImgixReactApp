@@ -5,21 +5,23 @@ import UndoIcon from "@mui/icons-material/Undo";
 import RedoIcon from "@mui/icons-material/Redo";
 import { useDispatch, useSelector } from "react-redux";
 import { optionsActions } from "../../../store/actions/optionsActions/OptionsActions";
+import useImageFilters from "../../../hooks/useImageFilters";
 
 export default function ImgixImage({ url }) {
-  const params = useSelector((s) => s.options);
   const selectedChanges = useSelector((s) => s.changes);
   const selectedFutureChanges = useSelector((s) => s.futureChanges);
   const dispatchOption = useDispatch();
 
-  function undo() {
+  const mappedImageFilters = useImageFilters();
+
+  const undo = () => {
     if (selectedChanges > 0)
       dispatchOption({ type: optionsActions.UNDO_CHANGE });
-  }
-  function redo() {
+  };
+  const redo = () => {
     if (selectedFutureChanges > 0)
       dispatchOption({ type: optionsActions.REDO_CHANGE });
-  }
+  };
   return (
     <div className='image-layer'>
       <div className='image-container'>
@@ -82,7 +84,11 @@ export default function ImgixImage({ url }) {
             </span>
           }
         </span>
-        <Imgix src={url} sizes='calc(100vw * 2 / 3)' imgixParams={params} />
+        <Imgix
+          src={url}
+          sizes='calc(100vw * 2 / 3)'
+          imgixParams={mappedImageFilters}
+        />
       </div>
     </div>
   );

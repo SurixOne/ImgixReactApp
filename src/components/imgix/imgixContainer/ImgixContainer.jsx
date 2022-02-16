@@ -15,10 +15,16 @@ export default function ImgixContainer() {
     "https://assets.imgix.net/unsplash/motorbike.jpg"
   );
   const params = useSelector((s) => s.options);
-  const [open, setOpen] = React.useState(false);
+  const [isMessageVisible, setIsMessageVisible] = useState(false);
 
-  function handleUrlRequest() {
-    let newUrl = buildURL(
+  const copyUrlToClipboard = () => {
+    const newUrl = generateUrl();
+    navigator.clipboard.writeText(newUrl);
+    setIsMessageVisible(true);
+  };
+
+  const generateUrl = () => {
+    return buildURL(
       url,
       Object.fromEntries(
         Object.entries(params).map(([key, filterProperties]) => [
@@ -27,9 +33,7 @@ export default function ImgixContainer() {
         ])
       )
     );
-    navigator.clipboard.writeText(newUrl);
-    setOpen(true);
-  }
+  };
   React.useEffect(() => {
     fetch(
       `https://storage.googleapis.com/nanlabs-engineering-technical-interviews/imgix-samples-list.json`
@@ -42,17 +46,17 @@ export default function ImgixContainer() {
   return (
     <div>
       <Snackbar
-        open={open}
+        open={isMessageVisible}
         autoHideDuration={6000}
         message='Copied URL to clipboard!'
-        onClose={() => setOpen(false)}
+        onClose={() => setIsMessageVisible(false)}
       >
-        <Alert onClose={() => setOpen(false)} severity='success'>
+        <Alert onClose={() => setIsMessageVisible(false)} severity='success'>
           copied URL to clipboard!
         </Alert>
       </Snackbar>
       <span className='copy-icon'>
-        <div onClick={() => handleUrlRequest()}>
+        <div onClick={() => copyUrlToClipboard()}>
           <FileCopyIcon
             style={{
               height: "100px",

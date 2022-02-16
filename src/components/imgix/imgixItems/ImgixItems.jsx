@@ -15,12 +15,10 @@ export default function ImgixItems() {
   const flipList = ["none", "h", "v", "hv"];
 
   const getNext = (value) => {
-    const len = flipList.length;
     let next = "error";
-
-    flipList.forEach((elem, index) => {
-      if (elem === value) next = flipList[(index + 1) % len];
-    });
+    const nextIndex = flipList.findIndex((e) => e === value) + 1;
+    const len = flipList.length;
+    next = flipList[nextIndex % len];
     return next;
   };
 

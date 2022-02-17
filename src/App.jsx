@@ -1,5 +1,5 @@
 import "./App.css";
-import FiltersPage from "./components/imgix/FiltersPage/FiltersPage";
+import FiltersPage from "./components/FiltersPage/FiltersPage";
 
 function App() {
   return (

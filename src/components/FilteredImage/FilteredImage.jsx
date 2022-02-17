@@ -4,8 +4,8 @@ import "./FilteredImage.css";
 import UndoIcon from "@mui/icons-material/Undo";
 import RedoIcon from "@mui/icons-material/Redo";
 import { useDispatch, useSelector } from "react-redux";
-import { optionsActions } from "../../../store/actions/optionsActions/OptionsActions";
-import useImageFilters from "../../../hooks/useImageFilters";
+import { optionsActions } from "../../store/actions/optionsActions/OptionsActions";
+import useImageFilters from "../../hooks/useImageFilters";
 
 export default function FilteredImage({ url }) {
   const selectedChanges = useSelector((s) => s.changes);

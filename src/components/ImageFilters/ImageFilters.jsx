@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { optionsActions } from "../../../store/actions/optionsActions/OptionsActions";
+import { optionsActions } from "../../store/actions/optionsActions/OptionsActions";
 import ImgixItem from "../imageFilter/ImageFilter";
 import "./ImageFilters.css";
 

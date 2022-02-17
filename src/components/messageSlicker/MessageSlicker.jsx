@@ -1,9 +1,9 @@
 import React from "react";
 import Imgix from "react-imgix";
 import Slider from "react-slick";
-import "./ImgixSlicker.css";
+import "./MessageSlicker.css";
 
-export default function ImgixSlicker({ urls, setUrl }) {
+export default function MessageSlicker({ urls, setUrl }) {
   var settings = {
     dots: false,
     infinite: false,
@@ -13,13 +13,13 @@ export default function ImgixSlicker({ urls, setUrl }) {
     initialSlide: 0,
   };
   return (
-    <div className="slicker-container">
-      <Slider className="img" {...settings}>
+    <div className='slicker-container'>
+      <Slider className='img' {...settings}>
         {urls.map((u) => (
-          <div key={u.url} className="img" onClick={() => setUrl(u.url)}>
+          <div key={u.url} className='img' onClick={() => setUrl(u.url)}>
             <Imgix
               src={u.url}
-              sizes="calc(100vw / 15 * 2)"
+              sizes='calc(100vw / 15 * 2)'
               style={{ maxHeight: "calc((100vw / 15 * 2))" }}
             />
           </div>

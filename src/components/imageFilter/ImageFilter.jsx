@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "./ImgixItem.css";
+import "./ImageFilter.css";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Slider from "@mui/material/Slider";
-export default function ImgixItem({ item, changeImageFilters }) {
+export default function ImageFilter({ item, changeImageFilters }) {
   const [numVal, setNumVal] = useState(0);
   const orientOptions = ["none", 1, 2, 3, 4, 5, 6, 7, 8, 90, 180, 270];
   const filtersRangedFromMinus100 = [
@@ -29,7 +29,8 @@ export default function ImgixItem({ item, changeImageFilters }) {
       rot: 359,
       default: 100,
     };
-    return rangedFilters[filter] || rangedFilters["default"];
+    const max = rangedFilters[filter];
+    return isNaN(max) ? rangedFilters["default"] : max;
   };
   const maxValue = getMaxValue(item.name);
 
@@ -42,7 +43,7 @@ export default function ImgixItem({ item, changeImageFilters }) {
   }
   return (
     <>
-      {clickableFilters.contains(item.name) ? (
+      {clickableFilters.includes(item.name) ? (
         item.name !== "orient" ? (
           <div
             className='orient-cont imgix-item'

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import ImgixImage from "../imgixImage/ImgixImage";
-import ImgixItems from "../imgixItems/ImgixItems";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import "./ImgixContainer.css";
-import ImgixSlicker from "../imgixSlicker/ImgixSlicker";
+import "./FiltersPage.css";
+import ImgixSlicker from "../messageSlicker/MessageSlicker";
 import { buildURL } from "react-imgix";
 import { useSelector } from "react-redux";
+import ImageFilters from "../ImageFilters/ImageFilters";
+import FilteredImage from "../FilteredImage/FilteredImage";
 
-export default function ImgixContainer() {
+export default function FiltersPage() {
   const [urls, setUrls] = useState([]);
   const [url, setUrl] = useState(
     "https://assets.imgix.net/unsplash/motorbike.jpg"
@@ -70,10 +70,10 @@ export default function ImgixContainer() {
       </span>
       <div className='imgix-container'>
         <div className='imgix-content'>
-          <ImgixItems />
+          <ImageFilters />
         </div>
         <div className='imgix-content'>
-          <ImgixImage url={url} />
+          <FilteredImage url={url} />
           <ImgixSlicker urls={urls} setUrl={setUrl} />
         </div>
       </div>

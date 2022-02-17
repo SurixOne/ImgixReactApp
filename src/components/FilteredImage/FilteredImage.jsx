@@ -1,13 +1,13 @@
 import React from "react";
 import Imgix from "react-imgix";
-import "./ImgixImage.css";
+import "./FilteredImage.css";
 import UndoIcon from "@mui/icons-material/Undo";
 import RedoIcon from "@mui/icons-material/Redo";
 import { useDispatch, useSelector } from "react-redux";
 import { optionsActions } from "../../../store/actions/optionsActions/OptionsActions";
 import useImageFilters from "../../../hooks/useImageFilters";
 
-export default function ImgixImage({ url }) {
+export default function FilteredImage({ url }) {
   const selectedChanges = useSelector((s) => s.changes);
   const selectedFutureChanges = useSelector((s) => s.futureChanges);
   const dispatchOption = useDispatch();

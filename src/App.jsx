@@ -1,10 +1,10 @@
 import "./App.css";
-import ImgixContainer from "./components/imgix/imgixContainer/ImgixContainer";
+import FiltersPage from "./components/imgix/FiltersPage/FiltersPage";
 
 function App() {
   return (
-    <div className="App">
-      <ImgixContainer />
+    <div className='App'>
+      <FiltersPage />
     </div>
   );
 }

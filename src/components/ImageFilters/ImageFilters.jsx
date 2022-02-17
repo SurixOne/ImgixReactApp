@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { optionsActions } from "../../../store/actions/optionsActions/OptionsActions";
-import ImgixItem from "../imgixItem/ImgixItem";
-import "./ImgixItems.css";
+import ImgixItem from "../imageFilter/ImageFilter";
+import "./ImageFilters.css";
 
-export default function ImgixItems() {
+export default function ImageFilters() {
   const imageFilters = useSelector((s) => s.options);
   const dispatchOption = useDispatch();
 

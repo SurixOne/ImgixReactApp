@@ -8,6 +8,30 @@ import Slider from "@mui/material/Slider";
 export default function ImgixItem({ item, changeImageFilters }) {
   const [numVal, setNumVal] = useState(0);
   const orientOptions = ["none", 1, 2, 3, 4, 5, 6, 7, 8, 90, 180, 270];
+  const filtersRangedFromMinus100 = [
+    "bri",
+    "exp",
+    "con",
+    "gam",
+    "sat",
+    "usm",
+    "vib",
+    "high",
+  ];
+
+  const clickableFilters = ["flip", "orient", "invert"];
+
+  const getMaxValue = (filter) => {
+    const rangedFilters = {
+      hue: 360,
+      high: 0,
+      usmrad: 500,
+      rot: 359,
+      default: 100,
+    };
+    return rangedFilters[filter] || rangedFilters["default"];
+  };
+  const maxValue = getMaxValue(item.name);
 
   function handleChange(e, v = undefined) {
     changeImageFilters({ ...item, value: v ? v : e.target.value });
@@ -18,9 +42,7 @@ export default function ImgixItem({ item, changeImageFilters }) {
   }
   return (
     <>
-      {item.name === "flip" ||
-      item.name === "orient" ||
-      item.name === "invert" ? (
+      {clickableFilters.contains(item.name) ? (
         item.name !== "orient" ? (
           <div
             className='orient-cont imgix-item'
@@ -70,37 +92,8 @@ export default function ImgixItem({ item, changeImageFilters }) {
             valueLabelDisplay='auto'
             value={numVal}
             step={1}
-            min={
-              item.name === "bri" ||
-              item.name === "exp" ||
-              item.name === "con" ||
-              item.name === "high" ||
-              item.name === "gam" ||
-              item.name === "sat" ||
-              item.name === "usm" ||
-              item.name === "vib"
-                ? -100
-                : 0
-            }
-            max={
-              item.name === "bri" ||
-              item.name === "exp" ||
-              item.name === "con" ||
-              item.name === "gam" ||
-              item.name === "sat" ||
-              item.name === "shad" ||
-              item.name === "sharp" ||
-              item.name === "usm" ||
-              item.name === "vib"
-                ? 100
-                : item.name === "hue"
-                ? 360
-                : item.name === "high"
-                ? 0
-                : item.name === "usmrad"
-                ? 500
-                : 359
-            }
+            min={filtersRangedFromMinus100.includes(item.name) ? -100 : 0}
+            max={maxValue}
           />
         </div>
       )}

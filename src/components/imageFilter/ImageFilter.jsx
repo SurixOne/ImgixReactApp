@@ -5,21 +5,26 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Slider from "@mui/material/Slider";
+import { FILTER_TYPES } from "../../constants/constants";
 export default function ImageFilter({ item, changeImageFilters }) {
   const [numVal, setNumVal] = useState(0);
   const orientOptions = ["none", 1, 2, 3, 4, 5, 6, 7, 8, 90, 180, 270];
   const filtersRangedFromMinus100 = [
-    "bri",
-    "exp",
-    "con",
-    "gam",
-    "sat",
-    "usm",
-    "vib",
-    "high",
+    FILTER_TYPES.BRIGHTNESS,
+    FILTER_TYPES.EXPOSURE,
+    FILTER_TYPES.CONTRAST,
+    FILTER_TYPES.GAMMA,
+    FILTER_TYPES.SATURATION,
+    FILTER_TYPES.UNSHARP_MASK,
+    FILTER_TYPES.VIBRANCE,
+    FILTER_TYPES.HIGHLIGHT,
   ];
 
-  const clickableFilters = ["flip", "orient", "invert"];
+  const clickableFilters = [
+    FILTER_TYPES.FLIP,
+    FILTER_TYPES.ORIENTATION,
+    FILTER_TYPES.INVERT,
+  ];
 
   const getMaxValue = (filter) => {
     const rangedFilters = {
@@ -38,13 +43,13 @@ export default function ImageFilter({ item, changeImageFilters }) {
     changeImageFilters({ ...item, value: v ? v : e.target.value });
   }
   function handleItemClick() {
-    if (item.name === "flip" || item.name === "invert")
+    if (item.name === FILTER_TYPES.FLIP || item.name === FILTER_TYPES.INVERT)
       changeImageFilters(item);
   }
   return (
     <>
       {clickableFilters.includes(item.name) ? (
-        item.name !== "orient" ? (
+        item.name !== FILTER_TYPES.ORIENT ? (
           <div
             className='orient-cont imgix-item'
             onClick={() => handleItemClick()}
@@ -87,7 +92,9 @@ export default function ImageFilter({ item, changeImageFilters }) {
           <Slider
             id='rot-slider'
             aria-label='Temperature'
-            defaultValue={item.name === "usmrad" ? 30 : 0}
+            defaultValue={
+              item.name === FILTER_TYPES.UNSHARP_MASK_RADIUS ? 30 : 0
+            }
             onChangeCommitted={handleChange}
             onChange={(e, v) => setNumVal(v)}
             valueLabelDisplay='auto'

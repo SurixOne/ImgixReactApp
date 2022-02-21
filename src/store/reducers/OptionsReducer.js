@@ -1,26 +1,40 @@
 import { optionsActions } from "../actions/optionsActions/OptionsActions";
 
+export const CHANGE_TYPES = {
+  NEXT: "NEXT",
+  NEW: "NEW",
+  OPOSITE: "OPOSITE",
+};
+
 const initialState = {
   changes: 0,
   futureChanges: 0,
   pastOptions: [],
   options: {
-    flip: "none",
-    orient: "none",
-    invert: false,
-    rot: 0,
-    bri: 0,
-    exp: 0,
-    con: 0,
-    high: 0,
-    gam: 0,
-    hue: 0,
-    sat: 0,
-    shad: 0,
-    sharp: 0,
-    usm: 0,
-    vib: 0,
-    usmrad: 30,
+    flip: { value: "none", changeType: CHANGE_TYPES.NEXT, label: "Flip" },
+    orient: {
+      value: "none",
+      changeType: CHANGE_TYPES.NEW,
+      label: "Orientation",
+    },
+    invert: {
+      value: false,
+      changeType: CHANGE_TYPES.OPOSITE,
+      label: "Invert",
+    },
+    rot: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Rotation" },
+    bri: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Brightness" },
+    exp: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Exposure" },
+    con: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Contrast" },
+    high: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Highlight" },
+    gam: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Gamma" },
+    hue: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Hue Shift" },
+    sat: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Saturation" },
+    shad: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Shadows" },
+    sharp: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Sharpen" },
+    usm: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Unsharp" },
+    vib: { value: 0, changeType: CHANGE_TYPES.NEW, label: "Vibrance" },
+    usmrad: { value: 30, changeType: CHANGE_TYPES.NEW, label: "USM Rad" },
   },
   futureOptions: [],
 };
@@ -34,7 +48,10 @@ export default function optionsReducer(state = initialState, action) {
         changes: state.pastOptions.length + 1,
         futureChanges: 0,
         pastOptions: [...state.pastOptions, state.options],
-        options: { ...state.options, [op.name]: op.value },
+        options: {
+          ...state.options,
+          [op.name]: { ...state.options[op.name], value: op.value },
+        },
         futureOptions: [],
       });
     case optionsActions.UNDO_CHANGE:

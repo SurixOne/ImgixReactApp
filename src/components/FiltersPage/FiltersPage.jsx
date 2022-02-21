@@ -1,27 +1,39 @@
 import React, { useState } from "react";
-import ImgixImage from "../imgixImage/ImgixImage";
-import ImgixItems from "../imgixItems/ImgixItems";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import "./ImgixContainer.css";
-import ImgixSlicker from "../imgixSlicker/ImgixSlicker";
+import "./FiltersPage.css";
+import ImgixSlicker from "../messageSlicker/MessageSlicker";
 import { buildURL } from "react-imgix";
 import { useSelector } from "react-redux";
+import ImageFilters from "../ImageFilters/ImageFilters";
+import FilteredImage from "../FilteredImage/FilteredImage";
 
-export default function ImgixContainer() {
+export default function FiltersPage() {
   const [urls, setUrls] = useState([]);
   const [url, setUrl] = useState(
     "https://assets.imgix.net/unsplash/motorbike.jpg"
   );
   const params = useSelector((s) => s.options);
-  const [open, setOpen] = React.useState(false);
+  const [isMessageVisible, setIsMessageVisible] = useState(false);
 
-  function handleUrlRequest() {
-    let newUrl = buildURL(url, { ...params });
+  const copyUrlToClipboard = () => {
+    const newUrl = generateUrl();
     navigator.clipboard.writeText(newUrl);
-    setOpen(true);
-  }
+    setIsMessageVisible(true);
+  };
+
+  const generateUrl = () => {
+    return buildURL(
+      url,
+      Object.fromEntries(
+        Object.entries(params).map(([key, filterProperties]) => [
+          key,
+          filterProperties.value,
+        ])
+      )
+    );
+  };
   React.useEffect(() => {
     fetch(
       `https://storage.googleapis.com/nanlabs-engineering-technical-interviews/imgix-samples-list.json`
@@ -34,17 +46,17 @@ export default function ImgixContainer() {
   return (
     <div>
       <Snackbar
-        open={open}
+        open={isMessageVisible}
         autoHideDuration={6000}
         message='Copied URL to clipboard!'
-        onClose={() => setOpen(false)}
+        onClose={() => setIsMessageVisible(false)}
       >
-        <Alert onClose={() => setOpen(false)} severity='success'>
+        <Alert onClose={() => setIsMessageVisible(false)} severity='success'>
           copied URL to clipboard!
         </Alert>
       </Snackbar>
       <span className='copy-icon'>
-        <div onClick={() => handleUrlRequest()}>
+        <div onClick={() => copyUrlToClipboard()}>
           <FileCopyIcon
             style={{
               height: "100px",
@@ -58,10 +70,10 @@ export default function ImgixContainer() {
       </span>
       <div className='imgix-container'>
         <div className='imgix-content'>
-          <ImgixItems />
+          <ImageFilters />
         </div>
         <div className='imgix-content'>
-          <ImgixImage url={url} />
+          <FilteredImage url={url} />
           <ImgixSlicker urls={urls} setUrl={setUrl} />
         </div>
       </div>

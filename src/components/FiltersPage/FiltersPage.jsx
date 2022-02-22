@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
@@ -34,14 +34,23 @@ export default function FiltersPage() {
       )
     );
   };
-  React.useEffect(() => {
-    fetch(
-      `https://storage.googleapis.com/nanlabs-engineering-technical-interviews/imgix-samples-list.json`
-    )
-      .then((res) => res.json())
-      .then((result) => {
-        setUrls(result);
-      });
+
+  const getImages = async () => {
+    try {
+      const result = await fetch(
+        `https://storage.googleapis.com/nanlabs-engineering-technical-interviews/imgix-samples-list.json`
+      );
+      const data = await result.json();
+      return data;
+    } catch (e) {
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    getImages().then((result) => {
+      setUrls(result);
+    });
   }, []);
   return (
     <div>
